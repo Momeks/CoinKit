@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct MarketChart: Codable {
+public struct MarketChart: Codable, Sendable {
     public let prices: [[Double]]  // [timestamp, price] in milliseconds
 }
 
@@ -28,8 +28,8 @@ extension MarketChart {
     }
 }
 
-#if DEBUG
 // MARK: - Preview
+#if DEBUG
 extension HistoricalPrice {
     public static var preview: HistoricalPrice {
         HistoricalPrice(

@@ -7,33 +7,33 @@
 
 import Foundation
 
-public struct Coin: Codable, Identifiable {
+public struct Coin: Codable, Identifiable, Sendable {
     public let id: String
     public let symbol: String
     public let name: String
     public let description: LocalizedText
     public let image: CoinImage
     public let marketData: MarketData
-    public let last_updated: String
+    public let lastUpdated: String
     
     enum CodingKeys: String, CodingKey {
         case id, symbol, name, description, image
         case marketData = "market_data"
-        case last_updated = "lastUpdated"
+        case lastUpdated = "last_updated"
     }
 }
 
-public struct LocalizedText: Codable {
+public struct LocalizedText: Codable, Sendable {
     public let en: String?
 }
 
-public struct CoinImage: Codable {
+public struct CoinImage: Codable, Sendable {
     public let thumb: String
     public let small: String
     public let large: String
 }
 
-public struct MarketData: Codable {
+public struct MarketData: Codable, Sendable {
     public let currentPrice: [String: Double]
     
     enum CodingKeys: String, CodingKey {
@@ -47,7 +47,7 @@ extension Coin {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
 
-        if let date = formatter.date(from: last_updated) {
+        if let date = formatter.date(from: lastUpdated) {
             return date.formatted(date: .complete, time: .shortened)
         } else {
             return "Invalid date"
@@ -55,8 +55,8 @@ extension Coin {
     }
 }
 
-#if DEBUG
 // MARK: - Preview
+#if DEBUG
 extension Coin {
     public static var preview: Coin {
         Coin(
@@ -74,7 +74,7 @@ extension Coin {
                 "eur": 58610.23,
                 "gbp": 50234.77
             ]),
-            last_updated: "2025-04-24T07:02:04.003Z"
+            lastUpdated: "2025-04-24T07:02:04.003Z"
         )
     }
 }
