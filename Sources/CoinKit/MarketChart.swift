@@ -20,18 +20,29 @@ public struct HistoricalPrice: Identifiable {
 // MARK: - Helpers
 extension MarketChart {
     public func toHistoricalPrices() -> [HistoricalPrice] {
-        return prices.compactMap { entry in
-            guard entry.count == 2 else { return nil }
-            let date = Date(timeIntervalSince1970: entry[0] / 1000.0)
-            return HistoricalPrice(date: date, price: entry[1])
+        let calendar = Calendar.current
+        var dailyPrices: [DateComponents: HistoricalPrice] = [:]
+        
+        for entry in prices {
+            guard entry.count == 2 else { continue }
+            let timestamp = entry[0] / 1000.0
+            let date = Date(timeIntervalSince1970: timestamp)
+            let price = entry[1]
+            let day = calendar.dateComponents([.year, .month, .day], from: date)
+            
+            dailyPrices[day] = HistoricalPrice(date: date, price: price)
         }
+        
+        return dailyPrices
+            .values
+            .sorted(by: { $0.date > $1.date })
     }
 }
 
-// MARK: - Preview
+// MARK: - Sample Data
 #if DEBUG
 extension HistoricalPrice {
-    public static var preview: HistoricalPrice {
+    public static var sample: HistoricalPrice {
         HistoricalPrice(
             date: Date(timeIntervalSince1970: 1713907200),  // April 24, 2024
             price: 62842.56

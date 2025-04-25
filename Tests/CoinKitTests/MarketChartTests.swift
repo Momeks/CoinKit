@@ -1,5 +1,5 @@
 //
-//  HistoricalPriceTests.swift
+//  MarketChartTests.swift
 //  CoinKit
 //
 //  Created by Mohammad Komeili on 4/24/25.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import CoinKit
 
-final class HistoricalPriceTests: XCTestCase {
+final class MarketChartTests: XCTestCase {
     
     func testSampleListHasFourteenEntries() {
         let list = HistoricalPrice.sampleList

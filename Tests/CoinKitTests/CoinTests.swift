@@ -11,7 +11,7 @@ import XCTest
 final class CoinTests: XCTestCase {
     
     func testCoinPreviewDataIsValid() {
-        let coin = Coin.preview
+        let coin = Coin.sample
         
         XCTAssertEqual(coin.id, "bitcoin")
         XCTAssertEqual(coin.symbol, "btc")
@@ -22,7 +22,7 @@ final class CoinTests: XCTestCase {
     }
     
     func testToDateStringReturnsFormattedDate() {
-        let coin = Coin.preview
+        let coin = Coin.sample
         let dateString = coin.toDateString()
         
         XCTAssertFalse(dateString.isEmpty)
@@ -30,7 +30,7 @@ final class CoinTests: XCTestCase {
     }
     
     func testToDateStringHandlesInvalidDate() {
-        var coin = Coin.preview
+        var coin = Coin.sample
         coin = Coin(
             id: coin.id,
             symbol: coin.symbol,
@@ -46,7 +46,7 @@ final class CoinTests: XCTestCase {
     }
     
     func testCurrentPriceMissingCurrencyReturnsNil() {
-        let coin = Coin.preview
+        let coin = Coin.sample
         let nonexistentCurrencyPrice = coin.marketData.currentPrice["rial"]  // assuming "Iranian rial" is not in preview data
 
         XCTAssertNil(nonexistentCurrencyPrice, "Expected nil for a currency not present in currentPrice")
