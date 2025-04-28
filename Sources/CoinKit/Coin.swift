@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Coin.swift
 //  CoinKit
 //
 //  Created by Mohammad Komeili on 4/24/25.
