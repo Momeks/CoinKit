@@ -47,6 +47,14 @@ public struct MarketData: Codable, Sendable {
 
 // MARK: - Helpers
 extension Coin {
+    public func toCurrencyString(for currency: String) -> String {
+        if let currentCurency = marketData.currentPrice[currency] {
+            return currentCurency.formatted(.currency(code: currency))
+        } else {
+            return ""
+        }
+    }
+    
     public func toDateString() -> String {
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
