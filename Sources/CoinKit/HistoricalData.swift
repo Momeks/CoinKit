@@ -30,7 +30,7 @@ public struct HistoricalData: Codable, Identifiable, Sendable {
 // MARK: - Sample Data
 #if DEBUG
 extension HistoricalData {
-    static let sample: HistoricalData = HistoricalData(
+    public static let sample: HistoricalData = HistoricalData(
         id: "bitcoin",
         symbol: "btc",
         name: "Bitcoin",
