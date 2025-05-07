@@ -9,6 +9,10 @@ import Foundation
 
 public struct MarketChart: Codable, Sendable {
     public let prices: [[Double]]  // [timestamp, price] in milliseconds
+    
+    public init(prices: [[Double]]) {
+        self.prices = prices
+    }
 }
 
 public struct HistoricalPrice: Identifiable {
