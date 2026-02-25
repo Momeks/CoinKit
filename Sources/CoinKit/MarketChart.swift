@@ -2,7 +2,7 @@
 //  MarketChart.swift
 //  CoinKit
 //
-//  Created by Mohammad Komeili on 4/24/25.
+//  Created by Momeks on 25.02.26.
 //
 
 import Foundation
